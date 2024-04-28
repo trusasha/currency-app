@@ -5,9 +5,14 @@ import {formatNumberWithCommas, removeCommasFromString} from '../utils';
 export const useConverterInputFormatters = ({
   setToValue,
   setFromValue,
+  currencyValuesRef,
 }: {
   setToValue: React.Dispatch<React.SetStateAction<string>>;
   setFromValue: React.Dispatch<React.SetStateAction<string>>;
+  currencyValuesRef: React.MutableRefObject<{
+    from: string;
+    to: string;
+  }>;
 }) => {
   const formatCallbacks = useMemo(
     (): {
@@ -21,17 +26,27 @@ export const useConverterInputFormatters = ({
       };
     } => ({
       onFocus: {
-        to: ({nativeEvent: {text}}) => setToValue(removeCommasFromString(text)),
+        to: ({nativeEvent: {text}}) =>
+          setToValue(
+            removeCommasFromString(text || currencyValuesRef.current?.to),
+          ),
         from: ({nativeEvent: {text}}) =>
-          setFromValue(removeCommasFromString(text)),
+          setFromValue(
+            removeCommasFromString(text || currencyValuesRef.current?.from),
+          ),
       },
       onBlur: {
-        to: ({nativeEvent: {text}}) => setToValue(formatNumberWithCommas(text)),
+        to: ({nativeEvent: {text}}) =>
+          setToValue(
+            formatNumberWithCommas(text || currencyValuesRef.current?.to),
+          ),
         from: ({nativeEvent: {text}}) =>
-          setFromValue(formatNumberWithCommas(text)),
+          setFromValue(
+            formatNumberWithCommas(text || currencyValuesRef.current?.from),
+          ),
       },
     }),
-    [setFromValue, setToValue],
+    [currencyValuesRef, setFromValue, setToValue],
   );
 
   return formatCallbacks;

@@ -27,6 +27,7 @@ export const Converter = () => {
     currencies,
     values,
     setValue,
+    currencyValuesRef,
   } = useConverter({
     initialValues,
     initialCurrencies,
@@ -37,6 +38,7 @@ export const Converter = () => {
   const {onFocus, onBlur} = useConverterInputFormatters({
     setToValue: setValue.to,
     setFromValue: setValue.from,
+    currencyValuesRef,
   });
 
   return (

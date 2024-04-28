@@ -1,8 +1,16 @@
 export const formatNumberWithCommas = (str: string) => {
+  if (!str) {
+    return str;
+  }
+
   return str.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
 export const removeCommasFromString = (str: string) => {
+  if (!str) {
+    return str;
+  }
+
   return str.replace(/,/g, '');
 };
 

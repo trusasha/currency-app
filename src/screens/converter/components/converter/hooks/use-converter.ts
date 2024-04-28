@@ -216,5 +216,6 @@ export const useConverter = ({
     },
     values: {from: fromValue, to: toValue},
     currencies,
+    currencyValuesRef,
   };
 };
