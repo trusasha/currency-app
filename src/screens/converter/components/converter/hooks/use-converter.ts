@@ -164,7 +164,7 @@ export const useConverter = ({
         return newState;
       });
     }
-  }, [inputId, selectedCurrency, setCurrencies, setFromValue, setToValue]);
+  }, [inputId, selectedCurrency]);
 
   /**
    * Effect to automatically calculate the initial value for 'to' input field
