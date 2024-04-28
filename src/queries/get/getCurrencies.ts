@@ -9,7 +9,11 @@ const getCurrencies = async ({
   pageParam = 1,
   queryKey,
 }: QueryFunctionContext<
-  [QUERY_KEYS, 'price' | '-price' | 'rank' | '-rank', string | undefined]
+  [
+    QUERY_KEYS,
+    'price' | '-price' | 'rank' | '-rank' | undefined,
+    string | undefined,
+  ]
 >) => {
   const [_, sort, symbols] = queryKey;
   const {data} = await getRequest<{data: Currency[]; meta: {count: number}}>(
@@ -33,9 +37,7 @@ export const useGetCurrencies = (
   {sort, symbols}: GetCurrenciesParams,
   config: {enabled?: boolean} = {enabled: true},
 ) => {
-  const resolvedSort = sort || 'price';
-
-  return useInfiniteQuery([QUERY_KEYS.CURRENCIES, resolvedSort, symbols], {
+  return useInfiniteQuery([QUERY_KEYS.CURRENCIES, sort, symbols], {
     queryFn: getCurrencies,
     staleTime: 1000 * 60,
     getNextPageParam: lastPage => {
