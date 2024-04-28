@@ -3,7 +3,7 @@ import {Currency} from 'interfaces/currency';
 import {SCREENS} from 'navigation';
 import {useEffect, useMemo, useRef, useState} from 'react';
 import {Keyboard} from 'react-native';
-import {calculateConversion, validateInput} from '../utils';
+import {calculateConversion, validateInput} from '../../../utils';
 
 /**
  * Custom hook to manage currency conversion between two currencies.

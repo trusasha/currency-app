@@ -59,4 +59,58 @@ export const mockDefaultCurrencies: Currency[] = [
     lastUpdated: '2024-04-28T12:29:05.436Z',
     tokens: [],
   },
+  {
+    id: 21369,
+    rank: 12,
+    slug: 'shiba-inu',
+    name: 'SHIBA INU',
+    symbol: 'SHIB',
+    category: 'Meme',
+    type: 'token',
+    maxSupply: 21000000,
+    volume24hBase: 10046856353835.223,
+    circulatingSupply: 589263311604490,
+    totalSupply: 999982361400665,
+    values: {
+      USD: {
+        price: 0.000024897355,
+        volume24h: 250140149,
+        high24h: 0.000025295337,
+        low24h: 0.000024603928,
+        marketCap: 14671097857.492607,
+        percentChange24h: 1.1926,
+        percentChange7d: -4.8073,
+        percentChange30d: -19.79,
+        percentChange3m: 175.8245,
+        percentChange6m: 210.3046,
+      },
+    },
+    lastUpdated: '2024-04-28T17:08:56.347Z',
+    tokens: [
+      {
+        tokenAddress: '0x76A878AdeA36c8Eb640e3022003c6A67ab39AD7B',
+        platform: {
+          id: 196,
+          name: 'ThunderCore',
+          slug: 'thundercore',
+        },
+      },
+      {
+        tokenAddress: '0x2859e4544c4bb03966803b044a93563bd2d0dd4d',
+        platform: {
+          id: 4,
+          name: 'BNB',
+          slug: 'bnb',
+        },
+      },
+      {
+        tokenAddress: '0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce',
+        platform: {
+          id: 3,
+          name: 'Ethereum',
+          slug: 'ethereum',
+        },
+      },
+    ],
+  },
 ];

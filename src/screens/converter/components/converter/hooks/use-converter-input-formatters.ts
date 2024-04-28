@@ -1,7 +1,13 @@
 import {useMemo} from 'react';
 import {TextInputProps} from 'react-native';
-import {formatNumberWithCommas, removeCommasFromString} from '../utils';
+import {formatNumberWithCommas, removeCommasFromString} from '../../../utils';
 
+/**
+ * Custom React hook that provides input formatting functionalities for currency conversion fields.
+ * It specifically handles formatting for two input fields, 'to' and 'from'. This hook sets up onFocus
+ * and onBlur event handlers for each field. The onFocus handler removes commas for clear numeric editing,
+ * and the onBlur handler adds commas back to enhance readability of the numeric values.
+ */
 export const useConverterInputFormatters = ({
   setToValue,
   setFromValue,
