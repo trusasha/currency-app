@@ -2,12 +2,23 @@ import {Currency} from 'interfaces/currency';
 import type {GetCurrenciesParams} from 'queries/api';
 import {API} from 'queries/api';
 import {QUERY_KEYS} from 'queries/query-key';
-import {useInfiniteQuery} from 'react-query';
+import {QueryFunctionContext, useInfiniteQuery} from 'react-query';
 import {getRequest} from 'utils/request';
 
-const getCurrencies = async ({pageParam = 1}) => {
+const getCurrencies = async ({
+  pageParam = 1,
+  queryKey,
+}: QueryFunctionContext<
+  [QUERY_KEYS, 'price' | '-price' | 'rank' | '-rank', string | undefined]
+>) => {
+  const [_, sort, symbols] = queryKey;
   const {data} = await getRequest<{data: Currency[]; meta: {count: number}}>(
-    API.getCurrencies({limit: 20, offset: (pageParam - 1) * 20}),
+    API.getCurrencies({
+      limit: 20,
+      offset: (pageParam - 1) * 20,
+      symbols: symbols || undefined,
+      sort,
+    }),
   );
 
   return {
@@ -22,7 +33,9 @@ export const useGetCurrencies = (
   {sort, symbols}: GetCurrenciesParams,
   config: {enabled?: boolean} = {enabled: true},
 ) => {
-  return useInfiniteQuery([QUERY_KEYS.CURRENCIES, sort, symbols], {
+  const resolvedSort = sort || 'price';
+
+  return useInfiniteQuery([QUERY_KEYS.CURRENCIES, resolvedSort, symbols], {
     queryFn: getCurrencies,
     staleTime: 1000 * 60,
     getNextPageParam: lastPage => {
